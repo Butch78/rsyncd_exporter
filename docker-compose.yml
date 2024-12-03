@@ -1,0 +1,14 @@
+services:
+  rsyncd_exporter:
+    build: .
+    ports:
+      - "3030:3030"
+    volumes:
+      - ./rsync.log:/app/rsync.log
+
+  prometheus:
+    image: prom/prometheus
+    volumes:
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml
+    ports:
+      - "9090:9090"
